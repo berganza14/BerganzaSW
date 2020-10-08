@@ -7,55 +7,67 @@
 		{
 			$("#boton").click(function()
 			{
-				var numero1 = parseInt($("#num1").val());
-				var numero2 = parseInt($("#num2").val());
-				var resultadoEsp = parseInt($("#resEsp").val());
-				var operaciones = $("#ope").val();
-				var resultado = null;
-			    var imgNice = document.getElementsByClassName("myImg")[0];
-			    if(isNaN(numero1) || isNaN(numero2) || isNaN(resultadoEsp))
+				var correcto = true;
+				var correo = $("#correo").val();
+				var enun = $("#enun").val();
+				var resc = $("#resc").val();
+				var resi1 = $("#resi1").val();
+				var resi2 = $("#resi2").val();
+				var resi3 = $("#resi3").val();
+
+
+				if(correo == null || enun == null || resc == null || resi1 == null || resi2 == null || resi3 == null)
 				{
-					$("#resObt").text(resultado + " ERROR -> Introduce numeros validos por favor");
-					$("#calc").attr("src", "https://media.tenor.com/images/010338cac8b517cd03d6d3fe297144f6/tenor.gif")
+					correcto = false;
 				}
-				else if(numero2 == 0 && operaciones == "/")
+				if(!formatoCorreo(correo))
 				{
-					$("#resObt").text(" ERROR -> No puedes divir por 0.");
-					$("#calc").attr("src", "https://i.gifer.com/8ahd.gif");
+					var letras = /^[A-Za-z]+$/;
+					for(var i=0;i<correo.lenght;i++)
+					{
+						if(i == "@" && i+1 == "i") //Estudiante
+						{
+							if(isNaN(correo[i-1]) || isNaN(correo[i-2]) || isNaN(correo[i-3]))
+							{
+								correcto = false;
+							}
+							var ultima1 = correo.split("@")[1];
+							if(ultima1 != "ikasle.ehu.eus" || ultima1 != "ikasle.ehu.es")
+							{
+								correcto = false;
+							}
+						}
+						else if(i == "@" && i+1 == "e") //Profesor
+						{	
+							var primera2 = correo.split("@")[0];
+							if(primera2.split(".").lenght == 2)
+							{
+								if(primera2.split(".")[0].value.match(letras) && primera2.split(".")[0].value.match(letras))
+								{
+									correcto = false
+								}
+								
+							}
+							var ultima2 = correo.split("@")[1];
+							if(ultima2 != "ehu.eus" || ultima2 != "ehu.es")
+							{
+								correcto = false;
+							}
+						}
+						else
+					}
+
+
+
+
+					correcto = false;
 				}
-				else
+				if(enun.lenght > 10)
 				{
-					switch(operaciones)
-					{
-						case "+":
-							resultado = numero1 + numero2;
-							break
-						case "-":
-							resultado = numero1 - numero2;
-							break
-						case "*":
-							resultado = numero1 * numero2;
-							break
-						case "/":
-							resultado = numero1 / numero2;
-							break
-						default:
-							console.log("El operador no es correcto");
-					}
-					if(resultado == resultadoEsp)
-					{
-						$("#resObt").text(resultado + " | El resultado es correcto :)");
-						$("#calc").attr("src", "https://media4.giphy.com/media/YRuFixSNWFVcXaxpmX/giphy.gif");
-					}
-					else
-					{
-						$("#resObt").text(resultado + " | El resultado no es correcto :(");
-						$("#calc").attr("src", "https://media2.giphy.com/media/3oz8xLd9DJq2l2VFtu/giphy.gif");
-					}
+					correcto = false;
 				}
-				//event.preventDefault();
-				return resultado;
-				});
+				return correcto;
+			});
 		});
 	</script>
 </body>
