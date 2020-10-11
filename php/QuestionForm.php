@@ -2,6 +2,8 @@
 <html>
 <head>
   <?php include '../html/Head.html'?>
+  <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="../js/test.js"></script>
 </head>
 <body>
   <?php include '../php/Menus.php' ?>
@@ -12,7 +14,7 @@
       pueda introducir los datos de una pregunta sin imagen.
 
 
-      <form id="fquestion" name="fquestion" action="AddQuestion.php">
+      <form id="fquestion" name="fquestion">
       	<br>
       	Correo: <input type="text" name="correo" id="correo"> <br>
       	Enunciado: <input type="text" name="enun" id="enun"> <br> 
