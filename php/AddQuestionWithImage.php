@@ -7,8 +7,7 @@
   <?php include '../php/Menus.php' ?>
   <section class="main" id="s1">
     <div>
-
-			Código PHP para añadir una pregunta con imagen
+    	if()
 
     </div>
   </section>
