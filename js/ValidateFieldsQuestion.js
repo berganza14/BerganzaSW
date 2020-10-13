@@ -9,11 +9,12 @@
 		var resi2 = $("#resi2").val();
 		var resi3 = $("#resi3").val();
 
-		var ptrn = new RegExp("(" + ptrnAlu + ")|(" + ptrnProf + ")");
+		
 		var ptrnAlu = /^[a-z]+[0-9]{3}@ikasle\.ehu\.(eus)|(es)$/;
 		var ptrnProf = /^[a-z]*\.?[a-z]*@ehu\.(eus)|(es)$/;
+		var ptrn = new RegExp("(" + ptrnAlu + ")|(" + ptrnProf + ")");
 
-		if(correo.match(ptrnAlu) || correo.match(ptrnProf)){
+		if(correo.match(ptrn) || correo.match(ptrnProf)){
 			console.log("Alumno o profe");
 			return true;
 
