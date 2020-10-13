@@ -9,7 +9,7 @@
 		var resi2 = $("#resi2").val();
 		var resi3 = $("#resi3").val();
 
-		var ptrn = /^\w[0-9]{3}@(ikasle\.)?ehu\.(eus)|(es)$/g;
+		var ptrn = new RegExp("(" + ptrnAlu + ")|(" + ptrnProf + ")");
 		var ptrnAlu = /^[a-z]+[0-9]{3}@ikasle\.ehu\.(eus)|(es)$/;
 		var ptrnProf = /^[a-z]*\.?[a-z]*@ehu\.(eus)|(es)$/;
 
