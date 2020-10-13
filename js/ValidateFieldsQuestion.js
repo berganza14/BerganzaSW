@@ -17,10 +17,9 @@
 
 		var email = true;
 		var pregu = true;
-		var ptrnAlu = /^[a-z]+[0-9]{3}@ikasle\.ehu\.(eus)|(es)$/;
-		var ptrnProf = /^[a-z]*\.?[a-z]*@ehu\.(eus)|(es)$/;
+		var ptrn = /(^[a-z]+[0-9]{3}@ikasle\.ehu\.(eus)|(es)$)|(^[a-z]+\.?[a-z]+@ehu\.(eus)|(es)$)/;
 
-		if(correo.match(ptrnAlu) || correo.match(ptrnProf)){
+		if(correo.match(ptrn)){
 			console.log("Alumno o profe");
 			email = true;
 
