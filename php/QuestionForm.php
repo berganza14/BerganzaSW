@@ -9,7 +9,7 @@
   <?php include '../php/Menus.php' ?>	
   <section class="main" id="s1">
     <div>
-      <form id="fquestion" name="fquestion" action="AddQuestion.php">
+      <form method="GET" id="fquestion" name="fquestion" action="AddQuestion.php">
       	<br>
       	Correo*: <input type="text" name="correo" id="correo" > <br>
       	Enunciado*: <input type="text" name="enun" id="enun" size="80"> <br> 
@@ -23,7 +23,7 @@
       	Alta <input type="radio" name="compl" value="3" id="alta"><br>
       	Tema pregunta*: <input type="text" name="tema" id="tema"> <br>
       	imagen de pregunta (opcional)<br><br>
-      	<input type="button" name="boton" id="boton" value="Enviar">
+      	<input type="submit" name="boton" id="boton" value="Enviar">
       </form>
     </div>
   </section>
