@@ -2,8 +2,8 @@ $(document).ready(function()
 {
     $('#imagen').change(function() 
     {
-    	verImagen(this);
-	});
+        verImagen(this);
+    });
 });
 
 function verImagen(input)
@@ -14,9 +14,10 @@ function verImagen(input)
 
         reader.onload = function (e) 
         {
-            $('#placeholder').attr('src', e.target.result);
+            console.log("Añadiendo imagen");
+            var picture = '<img src="' + e.target.result + '" style="width:200px;height:200px;" >'
+            $(".newImagen").empty().append(picture);
         }
-
         reader.readAsDataURL(input.files[0]);
     }
 }

@@ -5,14 +5,16 @@
   <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="../js/ShowImageInForm.js"></script>
   <style type="text/css">
-  	#placeholder
+  	#newImagen
   	{
 		display: block;
 		margin-left: auto;
 		margin-right: auto;
-		width: 60%;
+    width:100%;
+    max-width:400px;
+    height:100%;
+    max-height:400px;
 	}
-
 
   </style>
 </head>
@@ -33,10 +35,9 @@
       	Media <input type="radio" name="compE" value="Media" id="media">
       	Alta <input type="radio" name="compE" value="Alta" id="alta"><br>
       	Tema pregunta*: <input type="text" name="tema"> <br>
-      	<input type="file" name="imagen" id="imagen" accept="image"><br><br>
-      	<input type="button" name="boton" id="boton" value="Enviar"><br><br>
-      	<img type="file" src="../images/void.png" id="placeholder">
-
+        <input type="file" name="imagen" id="imagen" accept="image"><br><br>
+        <input type="submit" name="boton" id="boton" value="Enviar"><br><br>
+        <div class="newImagen"></div>
       </form>
     </div>
   </section>
