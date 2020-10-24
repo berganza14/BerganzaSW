@@ -22,10 +22,10 @@
   <?php include '../php/Menus.php' ?>
   <section class="main" id="s1">
     <div>
-      <form id="fquestion" name="fquestion" action="AddQuestion.php">
+      <form id="fquestion" name="fquestion" method="POST" action="AddQuestionWithImage.php" enctype="multipart/form-data">
       	<br>
       	Correo*: <input type="text" name="correo" id="correo"> <br>
-      	Enunciado*: <input type="text" name="enun" id="enun"> <br> 
+      	Enunciado*: <input type="text" name="enun" id="enun"> <br>
       	Respuesta correcta* : <input type="text" name="resc" id="resc"> <br>
       	Respuesta incorrecta 1*: <input type="text" name="resi1" id="resi1"> <br>
       	Respuesta incorrecta 2*: <input type="text" name="resi2" id="resi2"> <br>

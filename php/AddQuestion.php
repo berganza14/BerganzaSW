@@ -14,7 +14,7 @@
 				die ("Fallo al conectar a MySQL: " . mysqli_connect_error());
 			}
 			echo 'Connection OK<br>';
-			$sql="INSERT INTO preguntas(correo,enunciado,correcta,incorrecta1,incorrecta2,incorrecta3,complejidad,tema) VALUES ('$_GET[correo]', '$_GET[enun]', '$_GET[resc]', '$_GET[resi1]', '$_GET[resi2]', '$_GET[resi3]', '$_GET[compl]', '$_GET[tema]')";	
+			$sql="INSERT INTO preguntas(correo,enunciado,correcta,incorrecta1,incorrecta2,incorrecta3,complejidad,tema) VALUES ('$_GET[correo]', '$_GET[enun]', '$_GET[resc]', '$_GET[resi1]', '$_GET[resi2]', '$_GET[resi3]', '$_GET[compl]', '$_GET[tema]')";
 			if (!mysqli_query($link ,$sql)){
 				die('Error: ' . mysqli_error($link));
 				alert("Vaya, algo salio mal");
