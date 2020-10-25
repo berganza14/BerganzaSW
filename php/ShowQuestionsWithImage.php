@@ -8,7 +8,12 @@
   <section class="main" id="s1">
     <div>
       <?php
-    $link= mysqli_connect("localhost", "root", "", "quiz");
+      $servername = "localhost";
+      $username = "id14919795_sergio";
+      $password = "istingorraKalea5?";
+      $database = "id14919795_quiz";
+
+    $link= mysqli_connect($servername, $username, $password, $database);
     $preguntas = mysqli_query($link, "select * from preguntas" );
     echo '<table border=1> <tr> <th> CORREO </th> <th> ENUNCIADO </th> <th> CORRECTA </th> <th> INCORRECTA 1 </th> <th> INCORRECTA 2 </th> <th> INCORRECTA 3 </th> <th> COMPLEJIDAD </th> <th> TEMA </th> <th> IMAGEN </th>
     </tr>';

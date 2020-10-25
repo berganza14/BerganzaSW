@@ -8,6 +8,6 @@
 <nav class='main' id='n1' role='navigation'>
   <span><a href='Layout.php'>Inicio</a></span>
   <span><a href='QuestionForm.php'> Insertar Pregunta</a></span>
+  <span><a href='QuestionFormWithImage.php'> Insertar Pregunta con Imagen</a></span>
   <span><a href='Credits.php'>Creditos</a></span>
 </nav>
-
