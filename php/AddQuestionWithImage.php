@@ -44,7 +44,8 @@
         $imagen = addslashes(file_get_contents($image_temporal));
 
         $sql="INSERT INTO preguntas(correo,enunciado,correcta,incorrecta1,incorrecta2,incorrecta3,complejidad,tema,imagen) VALUES ($correo, '$_POST[enun]', '$_POST[resc]', '$_POST[resi1]', '$_POST[resi2]', '$_POST[resi3]', '$_POST[compl]', '$_POST[tema]', '$imagen')";
-        if (!mysqli_query($link ,$sql)){
+        if (!mysqli_query($link ,$sql))
+        {
           die('Error: ' . mysqli_error($link));
           alert("Vaya, algo salio mal");
         }
