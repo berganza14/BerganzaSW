@@ -3,7 +3,6 @@
 <head>
   <?php include '../html/Head.html'?>
   <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript" src="../js/ValidateFieldsQuestion.js"></script>
   <script type="text/javascript" src="../js/ShowImageInForm.js"></script>
   <style type="text/css">
     .error
@@ -16,17 +15,6 @@
     {
       display: inline;
     }
-
-  	#newImagen
-  	{
-		display: block;
-		margin-left: auto;
-		margin-right: auto;
-    width:100%;
-    max-width:400px;
-    height:100%;
-    max-height:400px;
-	}
   </style>
 </head>
 <body>
