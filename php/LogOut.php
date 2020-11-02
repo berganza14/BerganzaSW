@@ -21,7 +21,7 @@
   <?php include '../php/Menus.php' ?>
   <section class="main" id="s1">
     <div>
-      <form method="POST" id="signup" name="signup" action="SignUp.php">
+      <form method="POST" id="signup" name="signup">
       	<br>
       	Username*: <input type="text" name="user" id="user" class="valido" > <br>
         Password*: <input type="text" name="pass" id="pass" class="valido" > <br>
