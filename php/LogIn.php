@@ -41,7 +41,7 @@
         mysqli_close($mysql);
         if($cont == 1)
         {
-          echo ("<script> alert ('Bienvenido al sistema: '. '$username' . )</script>");
+          echo ("<script> alert ('Bienvenido al sistema: '. '$username' . );</script>");
           echo ("Login correcto <p><a href='Layout.php'>Puede insertar preguntas</a>");
         }
         else
