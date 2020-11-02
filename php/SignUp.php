@@ -28,30 +28,47 @@
         Profesor <input type="radio" name="tipo" value="prof" id="prof" checked="true"> <br>
       	Email*: <input type="text" name="email" id="email"> <br>
       	Nombre y Apellidos* : <input type="text" name="nomape" id="nomape" size="80"> <br>
-      	Password*: <input type="text" name="pass" id="pass"> <br>
-      	Repetir Password*: <input type="text" name="repass" id="repass"> <br>
+      	Password*: <input type="password" name="pass" id="pass"> <br>
+      	Repetir Password*: <input type="password" name="repass" id="repass"> <br>
         Foto* <input type="file" name="imagen" id="imagen" accept="image"><br><br>
         <input type="submit" name="boton" id="boton" value="Enviar">
       </form>
       <?php
       if (isset($_POST['email']))
       {
-        //Validacion
-        $correcto = 0;
+        //Validacion del email
         $error = "error";
+        $correcto = 0;
+        $tipo = $_POST['tipo'];
+        $email = $_POST['email'];
+        $ptr_prf = "/^[a-z]+\.?[a-z]+@ehu\.(eus)|(es)$/";
+        $ptr_alu = "/^[a-z]+[0-9]{3}@ikasle\.ehu\.(eus)|(es)$/";
+        if ($tipo == 'alum') {
+          if ( preg_match( $ptr_alu, $email ) == 0 ) {
+            $error = "El correo introducido no es de alumno";
+            $correcto = 0;
+          }
+        } else {
+          if ( preg_match( $ptr_prf, $email ) == 0 ) {
+            $error = "El correo introducido no es de profesor";
+            $correcto = 0;
+          }
+        }
+       
+        //Verificacion contraseña
         $pass = $_POST["pass"];
         $repass = $_POST["repass"];
-        if(strlen($pass) != 0 && strlen($repass) != 0)
+        if((strlen($pass) < 6 || strlen($repass) < 6 ))
         {
-          if($pass == $repass)
-          {
-            $correcto = 1;
-            $error = "Las contraseñas no coinciden.";
-          }
-          else
-          {
-            $error = "Alguna de las contraseñas tiene menos de 6 caracteres.";
-          }
+          $error = "Alguna de las contraseñas tiene menos de 6 caracteres.";
+          $correcto = 0;
+          
+        } else if ($pass != $repass) {
+          $error = "Las contraseñas no coinciden.";
+          $correcto = 0;
+          
+        } else {
+          $correcto = 1;
         }
         //Añadir user a bd
         if($correcto == 1)
