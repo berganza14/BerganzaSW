@@ -31,9 +31,10 @@
         }
       }
 
-      $patron = "/(^[a-z]+[0-9]{3}@ikasle\.ehu\.(eus)|(es)$)|(^[a-z]+\.?[a-z]+@ehu\.(eus)|(es)$)/";
+      $ptrn = '/(^[a-z]+[0-9]{3}@ikasle\.ehu\.(eus)|(es)$)|(^[a-z]+\.?[a-z]+@ehu\.(eus)|(es)$)/';
       $correo = $_POST["correo"];
-      if(preg_match($patron, $correo) == 0)
+      echo $correo;
+      if(preg_match($ptrn, $correo) == 0)
       {
         echo "hola";
         $error = 1;
