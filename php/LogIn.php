@@ -49,9 +49,8 @@
         if($cont == 1)
         {
           echo("<script> alert ('BIENVENIDO AL SISTEMA:". $username . "')</script>");
-          //echo ("Login correcto <p><a href='Layout.php?username=$username&foto=$foto'>Puede insertar preguntas</a>");
           $cont = 0;
-          header('location: Layout.php?username=$username&foto=$foto');
+          header('location: Layout.php?username='.$username.'&foto='.$foto);
         }
         else
         {
