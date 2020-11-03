@@ -13,7 +13,7 @@
       $password = "istingorraKalea5?";
       $database = "id14919795_quiz";
 
-      $link = mysqli_connect ("localhost", "root", "", "quiz");
+      $link = mysqli_connect ("localhost", $username, $password, $database);
       //$link= mysqli_connect($servername, $username, $password, $database);
 
       if (!$link){
@@ -35,6 +35,7 @@
       $correo = $_POST["correo"];
       if(preg_match($patron, $correo) == 0)
       {
+        echo "hola";
         $error = 1;
       }
 
@@ -54,7 +55,7 @@
       }
       else
       {
-        echo "Error de validacion del correo<br>";
+        echo "Error de validacion del formulario<br>";
         echo "<p> <a href='QuestionFormWithImage.php'> Volver a intentar. </a></p>";
       }
 

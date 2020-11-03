@@ -27,9 +27,13 @@
         <input type="submit" name="boton" id="boton" value="Log In">
       </form>
       <?php
+      $servername = "localhost";
+      $username = "id14919795_sergio";
+      $password = "istingorraKalea5?";
+      $database = "id14919795_quiz";
       if (isset($_POST['user']))
       {
-        $mysql = mysqli_connect("localhost", "root", "", "quiz");
+        $mysql = mysqli_connect("localhost", $username, $password, $database);
         if (!$mysql){
           echo 'fallo al conectar<br>';
           die ("Fallo al conectar a MySQL: " . mysqli_connect_error());
@@ -49,8 +53,18 @@
         if($cont == 1)
         {
           echo("<script> alert ('BIENVENIDO AL SISTEMA:". $username . "')</script>");
+
           $cont = 0;
-          header('location: Layout.php?username='.$username.'&foto='.$foto);
+          if (headers_sent())
+          {
+              echo ("Login correcto");
+              echo ("Ha habido un fallo de redireccionamiento, use este link");
+              echo("<p><a href='Layout.php?username=$username&foto=$foto'>Insertar preguntas</a>");
+          }
+          else
+          {
+              header('location: Layout.php?username='.$username.'&foto='.$foto);
+          }
         }
         else
         {

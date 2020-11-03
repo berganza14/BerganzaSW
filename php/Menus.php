@@ -2,12 +2,13 @@
 <header class='main' id='h1'>
   <span class="right"  id="signup"><a href="SignUp.php">Registro</a></span>
         <span class="right" id="login"><a href="LogIn.php">Login</a></span>
-        <span class="right" style="display:none;"  id="logout"><a href="LogOut.php">Logout</a></span>
+        <span class="right" style="display:none;"  id="logout"><a href="LogOut.php">LogOut</a></span>
           <?php
           if(isset($_GET['username']) && isset($_GET['foto']))
           {
             echo '<span class="right" id="user">'.$_GET['username'].'</span>';
-            echo '<img src="data:image/jpeg;base64,'.base64_encode( $_GET['foto'] ).'" width="50" height="50"/>';
+            echo '<img src='.$_GET['foto'].' height="50" width="50"/>';
+            //echo '<img src="data:image/jpg;base64,'.base64_encode( $_GET['foto'] ).'" height="50" width="50"/>';
           }
           ?>
 
