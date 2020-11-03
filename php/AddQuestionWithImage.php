@@ -21,15 +21,19 @@
       }
       echo 'Connection OK<br>';
 
-      $required = array('correo','enunciado','correcta','incorrecta1','incorrecta2','incorrecta3','complejidad','tema','imagen');
+      $required = array('correo','enun','resc','resi1','resi2','resi3','compl','tema');
       $error = 0;
+
       foreach($required as $field)
       {
-        if (empty($_POST[$field]))
+        if ($_POST[$field] == "")
         {
+          echo $_POST[$field];
           $error = 1;
         }
       }
+
+      if($_FILES['imagen']['tmp_name'])
 
       $ptrn = '/(^[a-z]+[0-9]{3}@ikasle\.ehu\.(eus)|(es)$)|(^[a-z]+\.?[a-z]+@ehu\.(eus)|(es)$)/';
       $correo = $_POST["correo"];
@@ -45,19 +49,19 @@
         $image_temporal = $_FILES['imagen']['tmp_name'];
         $imagen = addslashes(file_get_contents($image_temporal));
 
-        $sql="INSERT INTO preguntas(correo,enunciado,correcta,incorrecta1,incorrecta2,incorrecta3,complejidad,tema,imagen) VALUES ($correo, '$_POST[enun]', '$_POST[resc]', '$_POST[resi1]', '$_POST[resi2]', '$_POST[resi3]', '$_POST[compl]', '$_POST[tema]', '$imagen')";
+        $sql="INSERT INTO preguntas(correo,enunciado,correcta,incorrecta1,incorrecta2,incorrecta3,complejidad,tema,imagen) VALUES ('$_POST[correo]', '$_POST[enun]', '$_POST[resc]', '$_POST[resi1]', '$_POST[resi2]', '$_POST[resi3]', '$_POST[compl]', '$_POST[tema]', '$imagen')";
         if (!mysqli_query($link ,$sql))
         {
           die('Error: ' . mysqli_error($link));
           alert("Vaya, algo salio mal");
         }
         echo "Pregunta añadida con éxito<br>";
-        echo "<p> <a href='ShowQuestionsWithImage.php'> Ver registros </a></p>";
+        echo "<p> <a href='ShowQuestionsWithImage.php?username=$correo'> Ver registros </a></p>";
       }
       else
       {
         echo "Error de validacion del formulario<br>";
-        echo "<p> <a href='QuestionFormWithImage.php'> Volver a intentar. </a></p>";
+        echo "<p> <a href='QuestionFormWithImage.php?username=$correo> Volver a intentar. </a></p>";
       }
 
       mysqli_close($link);
