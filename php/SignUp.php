@@ -81,7 +81,7 @@
          //Añadir user a bd
          if($correcto == 1)
          {
-           $mysql = mysqli_connect("localhost", $username, $password, $database);
+           $mysql = mysqli_connect("localhost", "root", "", "quiz");
 
            if (!$mysql){
              die ("Fallo al conectar a MySQL: " . mysqli_connect_error());
