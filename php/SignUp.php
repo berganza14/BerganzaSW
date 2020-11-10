@@ -23,7 +23,7 @@
     <div>
       <form method="POST" id="signup" name="signup" action="SignUp.php" enctype="multipart/form-data">
       	<br>
-        Tipo de Usuario*: 
+        Tipo de Usuario*:
         Alumno <input type="radio" name="tipo" value="alum" id="alum">
         Profesor <input type="radio" name="tipo" value="prof" id="prof" checked="true"> <br>
       	Email*: <input type="text" name="email" id="email"> <br>
@@ -89,6 +89,10 @@
           }
           echo "Usuario registrado con éxito<br>";
           echo "<p> <a href='LogIn.php'> Iniciar sesión </a></p>";
+
+          $fp = fopen('Menus.php', 'w');
+          fwrite($fp, '');
+          fclose($fp);
         }
         else
         {
