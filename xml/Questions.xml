@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<? xml-stylesheet type="text/xsl" href="C:\xampp\htdocs\ProyectoSW2020-Alumnos\xml\ShowXmlQuestions.xsl" ?>
 <assessmentItems>
 	<assessmentItem subject="Web" author="jvadillo001@ikasle.ehu.eus">
 		<itemBody>
