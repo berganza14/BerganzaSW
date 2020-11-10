@@ -78,10 +78,14 @@
 
          } else {
          }
+         $servername = "localhost";
+         $username = "id14919795_sergio";
+         $password = "istingorraKalea5?";
+         $database = "id14919795_quiz";
          //Añadir user a bd
          if($correcto == 1)
          {
-           $mysql = mysqli_connect("localhost", "root", "", "quiz");
+           $mysql = mysqli_connect($servername, $username, $password, $database);
 
            if (!$mysql){
              die ("Fallo al conectar a MySQL: " . mysqli_connect_error());

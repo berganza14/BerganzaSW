@@ -33,7 +33,7 @@
       $database = "id14919795_quiz";
       if (isset($_POST['user']))
       {
-        $mysql = mysqli_connect("localhost", "root", "", "quiz");
+        $mysql = mysqli_connect($servername, $username, $password, $database);
         if (!$mysql){
           echo 'fallo al conectar<br>';
           die ("Fallo al conectar a MySQL: " . mysqli_connect_error());
