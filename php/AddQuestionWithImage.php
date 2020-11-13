@@ -13,7 +13,7 @@
       $password = "istingorraKalea5?";
       $database = "id14919795_quiz";
 
-      $link = mysqli_connect ("localhost", "root", "", "quiz");
+      $link = mysqli_connect ($servername, $username, $password, $database);
       //$link= mysqli_connect($servername, $username, $password, $database);
 
       if (!$link){
@@ -56,7 +56,7 @@
         echo "Pregunta añadida con éxito<br>";
         echo "<p> <a href='ShowQuestionsWithImage.php?username=$correo'> Ver registros </a></p>";
 
-        $xml = simplexml_load_file("..\xml\Questions.xml");
+        $xml = simplexml_load_file("../xml/Questions.xml");
         if(!$xml)
         {
           echo("<script> alert ('Error')</script>");
@@ -78,7 +78,7 @@
           $incorrectResponses->addChild("response", $_POST['resi2']);
           $incorrectResponses->addChild("response", $_POST['resi3']);
 
-          $xml->asXML('..\xml\Questions.xml');
+          $xml->asXML('../xml/Questions.xml');
         }
       }
       else
