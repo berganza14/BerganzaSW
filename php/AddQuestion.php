@@ -8,10 +8,7 @@
   <section class="main" id="s1">
     <div>
     	<?php
-      $servername = "localhost";
-      $username = "id14919795_sergio";
-      $password = "istingorraKalea5?";
-      $database = "id14919795_quiz";
+      include '../php/DbConfig.php';
 
       $link= mysqli_connect($servername, $username, $password, $database);
 			if (!$link){

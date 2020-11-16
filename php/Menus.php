@@ -19,6 +19,7 @@
   {
     echo ("<span><a href='Layout.php?username=$_GET[username]'>Inicio</a></span>");
     echo ("<span><a href='QuestionFormWithImage.php?username=$_GET[username]'>Insertar Pregunta</a></span>");
+    echo ("<span><a href='HandlingQuizesAjax.php?username=$_GET[username]'>Insertar Pregunta Ajax</a></span>");
     echo ("<span><a href='ShowQuestionsWithImage.php?username=$_GET[username]'>Ver Preguntas</a></span>");
     echo ("<span><a href='ShowXmlQuestions.php?username=$_GET[username]'>Ver Preguntas xml</a></span>");
 

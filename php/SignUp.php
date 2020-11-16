@@ -34,10 +34,7 @@
         <input type="submit" name="boton" id="boton" value="Enviar">
       </form>
       <?php
-      $servername = "localhost";
-      $username = "id14919795_sergio";
-      $password = "istingorraKalea5?";
-      $database = "id14919795_quiz";
+      include '../php/DbConfig.php';
       if (isset($_POST['email']))
        {
          //Validacion del email
