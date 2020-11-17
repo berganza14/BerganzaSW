@@ -27,10 +27,7 @@
         <input type="submit" name="boton" id="boton" value="Log In">
       </form>
       <?php
-      $servername = "localhost";
-      $username = "id14919795_sergio";
-      $password = "istingorraKalea5?";
-      $database = "id14919795_quiz";
+      include '../php/DbConfig.php';
       if (isset($_POST['user']))
       {
         $mysql = mysqli_connect($servername, $username, $password, $database);
