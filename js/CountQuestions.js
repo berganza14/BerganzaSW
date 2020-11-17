@@ -1,7 +1,7 @@
 $(document).ready(function()
 {
-  refresh();
-  //setInterval(refresh(), 100);
+  //refresh();
+  setInterval(refresh(), 10000);
 });
 
 function refresh()

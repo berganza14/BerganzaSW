@@ -6,15 +6,13 @@ XMLHttpRequestObject.onreadystatechange = function()
     var xml = XMLHttpRequestObject.responseXML;
     var tabla = "<tr><th>Autor</th><th>Enunciado</th><th>Respuesta Correcta</th></tr>";
     var items = xml.getElementsByTagName("assessmentItem");
-    console.log(items.length);
     for(i=0;i<items.length;i++)
     {
       tabla = tabla + "<tr><td>" + items[i].getAttribute('author') + "</td><td>" +
-      items[i].childNodes[0].textContent + "</td><td>" +
-      items[i].childNodes[1].textContent + "</td></tr>";
+      items[i].childNodes[0].childNodes[0].textContent + "</td><td>" +
+      items[i].childNodes[1].childNodes[0].textContent + "</td></tr>";
     }
     document.getElementById("preguntas").innerHTML = tabla;
-    console.log(tabla);
   }
 }
 
