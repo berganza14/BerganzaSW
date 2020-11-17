@@ -29,7 +29,16 @@
       </form>
       <?php
       echo ("<script> alert ('Vuelve pronto! ')</script>");
-      header('location: Layout.php');
+
+      if (headers_sent())
+      {
+        echo ("Ha habido un fallo de redireccionamiento, use este link");
+        echo "<a href=Layout.php></a>";
+      }
+      else
+      {
+          header('location: Layout.php');
+      }
       ?>
     </div>
   </section>

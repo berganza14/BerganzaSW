@@ -21,12 +21,9 @@
   <?php include '../php/Menus.php' ?>
   <section class="main" id="s1">
     <div>
-      <form id="fquestionImage" name="fquestionImage" method="POST" action="AddQuestionWithImage.php" enctype="multipart/form-data">
+      <form id="fquestionImage" name="fquestionImage" method="POST" action="<?php echo 'AddQuestionWithImage.php?username=$_GET[username]&foto=$_GET[foto]'; ?>" enctype="multipart/form-data">
       	<br>
-        <?php
-        echo ("Correo*: <input type='text' name='correo' id='correo' value=".htmlspecialchars($_GET["username"])."> <br>");
-        ?>
-
+        Correo*: <input type='text' name='correo' id='correo' value="<?php echo htmlspecialchars($_GET["username"])?>"> <br>
       	Enunciado*: <input type="text" name="enun" id="enun"> <br>
       	Respuesta correcta* : <input type="text" name="resc" id="resc"> <br>
       	Respuesta incorrecta 1*: <input type="text" name="resi1" id="resi1"> <br>
