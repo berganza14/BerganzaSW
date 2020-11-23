@@ -3,6 +3,7 @@
 <head>
   <?php include '../html/Head.html'?>
   <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
   <script type="text/javascript" src="../js/ShowImageInForm.js"></script>
   <script type="text/javascript" src="../js/AddQuestionsAjax.js"></script>
   <script type="text/javascript" src="../js/ShowQuestionsAjax.js"></script>
@@ -32,7 +33,7 @@
       </p>
     </div>
     <div>
-      <form id="fquestionImage" name="fquestionImage" method="POST" action="<?php echo 'AddQuestionWithImage.php?username=$_GET[username]&foto=$_GET[foto]'; ?>" enctype="multipart/form-data">
+      <form id="fquestionImage" name="fquestionImage" method="POST" enctype="multipart/form-data">
       	<br>
         Correo*: <input type='text' name='correo' id='correo' value="<?php echo htmlspecialchars($_GET["username"])?>"> <br>
       	Enunciado*: <input type="text" name="enun" id="enun"> <br>
@@ -46,15 +47,14 @@
       	Alta <input type="radio" name="compl" value="3" id="alta"><br>
       	Tema pregunta*: <input type="text" name="tema" id="tema"> <br>
         <input type="file" name="imagen" id="imagen" accept="image"><br><br>
+        <div class="newImagen"></div> <br><br>
         <input type="button" name="enviar" id="enviar" value="Enviar Pregunta"><br><br>
         <input type="button" name="ver" id="ver" value="Ver Preguntas" onclick="pedirPreguntas()"><br><br>
       </form>
     </div>
     <div id="insercionDIV">
-      <p>
-      </p>
-    </div id="preguntasDIV">
-    <div>
+    </div>
+    <div id="preguntasDIV">
       <table id="preguntas" >
       </table>
     </div>

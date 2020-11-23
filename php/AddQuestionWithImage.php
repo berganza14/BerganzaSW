@@ -75,7 +75,6 @@
           $incorrectResponses->addChild("response", $_POST['resi3']);
 
           $xml->asXML('../xml/Questions.xml');
-
         }
       }
       else

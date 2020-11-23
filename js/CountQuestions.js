@@ -1,11 +1,12 @@
 $(document).ready(function()
 {
   refresh();
-  //setInterval(refresh(), 100);
+  setInterval(refresh, 10000);
 });
 
 function refresh()
 {
+  console.log("Time:");
   $.ajax({
       type: "GET",
       url: "../xml/Questions.xml",
