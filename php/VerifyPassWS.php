@@ -17,24 +17,15 @@ function verificar($x,$ticket)
 	if($ticket == "1010")
 	{
 		$handle = fopen('../txt/toppasswords.txt', 'r');
-		$invalid = true;
-		/*while (($buffer = fgets($handle)) !== false) {
+		$invalid = false;
+		while (($buffer = fgets($handle)) !== false) {
 				if (strpos($buffer, $x) !== false) {
-						$valid = TRUE;
+						$invalid = true;
 						break;
 				}
-		}*/
-		while(!feof($handle))
-		{
-			$linea = fgets($handle);
-			$linea = trim($linea);
-			if($linea == $x)
-			{
-				$invalid = false;
-			}
 		}
 		fclose($handle);
-		if(!$invalid)
+		if($invalid == false)
 		{
 			return "VALIDA";
 		}
@@ -45,7 +36,7 @@ function verificar($x,$ticket)
 	}
 	else
 	{
-		return "INVALIDA";
+		return "INVALIDA TICKET";
 	}
 }
 
