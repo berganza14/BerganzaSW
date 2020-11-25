@@ -5,6 +5,8 @@
   <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="../js/ValidateFieldsQuestion.js"></script>
   <script type="text/javascript" src="../js/CheckPassword.js"></script>
+  <script type="text/javascript" src="../js/CheckUser.js"></script>
+
   <style>
     .error
     {
@@ -28,6 +30,7 @@
         Alumno <input type="radio" name="tipo" value="alum" id="alum">
         Profesor <input type="radio" name="tipo" value="prof" id="prof" checked="true"> <br>
       	Email*: <input type="text" name="email" id="email"> <br>
+        <p id="userVerification" ></p>
       	Nombre y Apellidos* : <input type="text" name="nomape" id="nomape" size="80"> <br>
       	Password*: <input type="password" name="pass" id="pass"> <br>
         <p id="passVerification" ></p>
