@@ -37,6 +37,7 @@
       	Repetir Password*: <input type="password" name="repass" id="repass"> <br>
         Foto* <input type="file" name="imagen" id="imagen" accept="image"><br><br>
         <input type="submit" name="boton" id="boton" value="Enviar">
+        <p id="submitVerification" ></p>
       </form>
       <?php
       include '../php/DbConfig.php';

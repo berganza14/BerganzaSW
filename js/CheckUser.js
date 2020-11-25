@@ -16,10 +16,13 @@ $(document).ready(function() {
          if(datos == "SI")
          {
            $('#userVerification').html("VIP");
+           $('#boton').attr("disabled", false);
          }
          else
          {
            $('#userVerification').html("NO VIP");
+           $('#boton').attr("disabled", true);
+           $('#submitVerification').html("Tiene que ser vip para enviar el formulario");
          }
        },
        error : function ()

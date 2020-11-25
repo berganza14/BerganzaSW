@@ -15,10 +15,13 @@ $(document).ready(function() {
          if(datos == "VALIDA")
          {
            $('#passVerification').html("VALIDA");
+           $('#boton').attr("disabled", false);
          }
          else
          {
            $('#passVerification').html("INVALIDA");
+           $('#boton').attr("disabled", true);
+           $('#submitVerification').html("La contraseña tiene que ser valida para enviar el formulario");
          }
        },
        error : function ()
