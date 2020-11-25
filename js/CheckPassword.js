@@ -1,7 +1,7 @@
 $(document).ready(function() {
   $("#pass").focusout(function() {
-    console.log("Pass");
     var password = $("#pass").val();
+    console.log(password);
     $.ajax({
        url : '../php/ClientVerifyPass.php?pass='+$('#pass').val(),
        type : 'GET',

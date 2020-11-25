@@ -14,11 +14,10 @@ $server->register('verificar',
 
 function verificar($x,$ticket)
 {
-	$ret = "INVALIDA";
 	if($ticket == "1010")
 	{
 		$handle = fopen('../txt/toppasswords.txt', 'r');
-		$valid = true;
+		$invalid = true;
 		/*while (($buffer = fgets($handle)) !== false) {
 				if (strpos($buffer, $x) !== false) {
 						$valid = TRUE;
@@ -31,16 +30,23 @@ function verificar($x,$ticket)
 			$linea = trim($linea);
 			if($linea == $x)
 			{
-				$valid = false;
+				$invalid = false;
 			}
 		}
 		fclose($handle);
-		if($valid)
+		if(!$invalid)
 		{
-			$ret = "VALIDA";
+			return "VALIDA";
+		}
+		else
+		{
+			return "INVALIDA";
 		}
 	}
-	return $ret;
+	else
+	{
+		return "INVALIDA";
+	}
 }
 
 if(!isset($HTTP_RAW_POST_DATA)) $HTTP_RAW_POST_DATA = file_get_contents('php://input');
