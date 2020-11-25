@@ -4,6 +4,7 @@
   <?php include '../html/Head.html'?>
   <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="../js/ValidateFieldsQuestion.js"></script>
+  <script type="text/javascript" src="../js/CheckPassword.js"></script>
   <style>
     .error
     {
@@ -29,6 +30,7 @@
       	Email*: <input type="text" name="email" id="email"> <br>
       	Nombre y Apellidos* : <input type="text" name="nomape" id="nomape" size="80"> <br>
       	Password*: <input type="password" name="pass" id="pass"> <br>
+        <p id="passVerification" ></p>
       	Repetir Password*: <input type="password" name="repass" id="repass"> <br>
         Foto* <input type="file" name="imagen" id="imagen" accept="image"><br><br>
         <input type="submit" name="boton" id="boton" value="Enviar">

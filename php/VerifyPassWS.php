@@ -15,14 +15,13 @@ function verificar($x){
 	$handle = fopen('../txt/toppasswords.txt', 'r');
 	$valid = false;
 	while (($buffer = fgets($handle)) !== false) {
-    	if (strpos($buffer, $id) !== false) {
+    	if (strpos($buffer, $x) !== false) {
         	$valid = TRUE;
         	break;
-    	}      
+    	}
 	}
 	fclose($handle);
-	return $valid; 
-
+	return $valid;
 }
 
 if(!isset($HTTP_RAW_POST_DATA)) $HTTP_RAW_POST_DATA = file_get_contents('php://input');
