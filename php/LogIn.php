@@ -43,13 +43,26 @@ session_start ();
         $username = $_POST['user'];
         $pass = $_POST['pass'];
 
+        if(CRYPT_STD_DES == 1)
+        {
+          $encriptedPass = crypt($pass, 'st');
+        }
+        else
+        {
+          echo "Standard DES not supported.\n<br>";
+        }
+
         if($username == "admin@ehu.es")
         {
-          $_SESSION['admin'] = 'admin';
+          $_SESSION['user'] = 'admin';
+        }
+        else
+        {
+          $_SESSION['user'] = '$username';
         }
 
         $cont = 0;
-        $usuarios = mysqli_query($mysql, "select * from usuarios where email = '$username' and contraseña = '$pass'");
+        $usuarios = mysqli_query($mysql, "select * from usuarios where email = '$username' and contraseña = '$encriptedPass'");
         $row = mysqli_fetch_array($usuarios);
         $cont = mysqli_num_rows($usuarios);
         mysqli_free_result($usuarios);

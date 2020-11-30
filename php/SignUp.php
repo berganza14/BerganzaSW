@@ -1,11 +1,13 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
   <?php include '../html/Head.html'?>
   <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="../js/ValidateFieldsQuestion.js"></script>
-  <script type="text/javascript" src="../js/CheckPassword.js"></script>
-  <script type="text/javascript" src="../js/CheckUser.js"></script>
+  <script type="text/javascript" src="../js/CheckSignup.js"></script>
 
   <style>
     .error
@@ -97,7 +99,17 @@
 
            $foto = $_FILES['imagen']['name'];
 
-           $sql="INSERT INTO usuarios(tipo,email,nombre,contraseña,estado,foto) VALUES ('$_POST[tipo]', '$_POST[email]', '$_POST[nomape]', '$_POST[pass]', 'activado', '$foto')";
+           if(CRYPT_STD_DES == 1)
+           {
+             $encriptedPass = crypt($pass, 'st');
+             echo "<script>console.log(".$encriptedPass.")</script>";
+           }
+           else
+           {
+             echo "Standard DES not supported.\n<br>";
+           }
+
+           $sql="INSERT INTO usuarios(tipo,email,nombre,contraseña,estado,foto) VALUES ('$_POST[tipo]', '$_POST[email]', '$_POST[nomape]', '$encriptedPass', 'activado', '$foto')";
            if (!mysqli_query($mysql ,$sql)){
              die('Error: ' . mysqli_error($mysql));
              echo("Vaya, algo salio mal");

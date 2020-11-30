@@ -1,0 +1,33 @@
+La funcion php de cifrado es: crypt();
+Se usa la constante de cifrado estandar -> CRYPT_STD_DES
+
+Los cambios realizados han sido:
+Añadir una comprobacion de que el sistema operativo soporta ese tipo de encriptación.
+Si la soporta, se añade la contraseña origianl encriptada con el formate estandar a la
+variable $encriptedPass, la cual se usa en el INSERT de la base de datos. En el caso del
+LogIn, se encripta la insertada por el usuario en el formulario y se compara la contraseña
+con la de la base de datos.
+- SignUp:
+
+  if(CRYPT_STD_DES == 1)
+  {
+    $encriptedPass = crypt($pass, 'st');
+  }
+  else
+  {
+    echo "Standard DES not supported.\n<br>";
+  }
+-LogIn:
+
+  if(CRYPT_STD_DES == 1)
+  {
+    $encriptedPass = crypt($pass, 'st');
+  }
+  else
+  {
+    echo "Standard DES not supported.\n<br>";
+  }
+
+Ejemplo de crifrado:
+Contraseña original: patatasconqueso
+Contraseña cifrada: stgOLrppqVI9U

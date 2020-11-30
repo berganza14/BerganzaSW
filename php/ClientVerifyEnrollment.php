@@ -9,8 +9,7 @@
     echo "Error cliente";
   }
 
-  $user = array('x' => $_REQUEST['correo']);
+  $user = array('x' => $_POST['correo']);
 
   echo $soapclient->call('comprobar', $user);
-
 ?>

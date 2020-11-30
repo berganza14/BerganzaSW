@@ -16,7 +16,7 @@
 </header>
 <nav class='main' id='n1' role='navigation'>
   <?php
-  if(isset($_GET['username']) &&  !(isset($_SESSION['admin'])))
+  if(isset($_SESSION['user']) && !($_SESSION['user'] == 'admin'))
   {
     echo ("<span><a href='Layout.php?username=$_GET[username]'>Inicio</a></span>");
     echo ("<span><a href='QuestionFormWithImage.php?username=$_GET[username]'>Insertar Pregunta</a></span>");
@@ -31,9 +31,9 @@
     //echo ("<script> document.getElementById('user').innerHTML=".strval(htmlspecialchars($_GET['username']))).";</script>");
     //echo ("<script> document.getElementById('user').style.display='';</script>");
   }
-  else if(isset($_GET['username']) &&  isset($_SESSION['admin']))
+  else if(isset($_SESSION['user']) &&  $_SESSION['user'] == 'admin')
   {
-    echo ("<span><a href='HandlingAccounts.php?username=$_GET[username]'>Usuarios</a></span>");
+    echo ("<span><a href='HandlingAccounts.php'>Usuarios</a></span>");
     echo ("<script> document.getElementById('signup').style.display='none';</script>");
     echo ("<script> document.getElementById('login').style.display='none';</script>");
     echo ("<script> document.getElementById('logout').style.display='';</script>");

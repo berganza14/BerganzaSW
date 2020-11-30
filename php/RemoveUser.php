@@ -4,6 +4,7 @@
   $correo = $_POST['usuario'];
 
   $link= mysqli_connect($servername, $username, $password, $database);
+
   $usuario = mysqli_query($link, "DELETE FROM usuarios WHERE email='".$correo."'");
   if (!$usuario)
   {

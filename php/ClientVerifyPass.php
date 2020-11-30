@@ -9,7 +9,7 @@
     echo "Error cliente";
   }
 
-  $password = array('x' => $_REQUEST['pass'],'ticket' => "1010");
+  $password = array('x' => $_POST['pass'],'ticket' => "1010");
 
   echo $soapclient->call('verificar', $password);
 ?>
