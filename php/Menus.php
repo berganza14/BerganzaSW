@@ -16,22 +16,30 @@
 </header>
 <nav class='main' id='n1' role='navigation'>
   <?php
-  if(isset($_GET['username']))
+  if(isset($_GET['username']) &&  !(isset($_SESSION['admin'])))
   {
     echo ("<span><a href='Layout.php?username=$_GET[username]'>Inicio</a></span>");
     echo ("<span><a href='QuestionFormWithImage.php?username=$_GET[username]'>Insertar Pregunta</a></span>");
     echo ("<span><a href='HandlingQuizesAjax.php?username=$_GET[username]'>Insertar Pregunta Ajax</a></span>");
     echo ("<span><a href='ShowQuestionsWithImage.php?username=$_GET[username]'>Ver Preguntas</a></span>");
     echo ("<span><a href='ShowXmlQuestions.php?username=$_GET[username]'>Ver Preguntas xml</a></span>");
-
     echo ("<span><a href='Credits.php?username=$_GET[username]'>Creditos</a></span>");
+
     echo ("<script> document.getElementById('signup').style.display='none';</script>");
     echo ("<script> document.getElementById('login').style.display='none';</script>");
     echo ("<script> document.getElementById('logout').style.display='';</script>");
     //echo ("<script> document.getElementById('user').innerHTML=".strval(htmlspecialchars($_GET['username']))).";</script>");
     //echo ("<script> document.getElementById('user').style.display='';</script>");
   }
-  else {
+  else if(isset($_GET['username']) &&  isset($_SESSION['admin']))
+  {
+    echo ("<span><a href='HandlingAccounts.php?username=$_GET[username]'>Usuarios</a></span>");
+    echo ("<script> document.getElementById('signup').style.display='none';</script>");
+    echo ("<script> document.getElementById('login').style.display='none';</script>");
+    echo ("<script> document.getElementById('logout').style.display='';</script>");
+  }
+  else
+  {
     echo "<span><a href='Layout.php'>Inicio</a></span>";
     echo "<span><a href='Credits.php'>Creditos</a></span>";
   }

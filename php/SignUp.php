@@ -97,10 +97,10 @@
 
            $foto = $_FILES['imagen']['name'];
 
-           $sql="INSERT INTO usuarios(tipo,email,nombre,contraseña,foto) VALUES ('$_POST[tipo]', '$_POST[email]', '$_POST[nomape]', '$_POST[pass]', '$foto')";
+           $sql="INSERT INTO usuarios(tipo,email,nombre,contraseña,estado,foto) VALUES ('$_POST[tipo]', '$_POST[email]', '$_POST[nomape]', '$_POST[pass]', 'activado', '$foto')";
            if (!mysqli_query($mysql ,$sql)){
              die('Error: ' . mysqli_error($mysql));
-             alert("Vaya, algo salio mal");
+             echo("Vaya, algo salio mal");
            }
            echo "Usuario registrado con éxito<br>";
            echo "<p> <a href='LogIn.php'> Iniciar sesión </a></p>";

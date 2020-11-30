@@ -1,3 +1,6 @@
+<?php
+session_start ();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,6 +43,11 @@
         $username = $_POST['user'];
         $pass = $_POST['pass'];
 
+        if($username == "admin@ehu.es")
+        {
+          $_SESSION['admin'] = 'admin';
+        }
+
         $cont = 0;
         $usuarios = mysqli_query($mysql, "select * from usuarios where email = '$username' and contraseña = '$pass'");
         $row = mysqli_fetch_array($usuarios);
@@ -47,7 +55,7 @@
         mysqli_free_result($usuarios);
         mysqli_close($mysql);
         $foto = $row['foto'];
-        if($cont == 1)
+        if($cont >= 1)
         {
           echo("<script> alert ('BIENVENIDO AL SISTEMA:". $username . "')</script>");
 

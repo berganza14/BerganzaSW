@@ -11,6 +11,7 @@ $(document).ready(function() {
        //processData: false,
        success : function (datos)
        {
+         console.log("Datos pass: ");
          console.log(datos);
          if(datos == "VALIDA")
          {
@@ -26,6 +27,8 @@ $(document).ready(function() {
        },
        error : function ()
        {
+         console.log("Datos error: ");
+         console.log(datos);
          $('#passVerification').html("ERROR");
        }
      });
