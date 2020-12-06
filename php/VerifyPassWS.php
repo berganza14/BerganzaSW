@@ -8,15 +8,15 @@ $server -> configureWSDL('verificar',$ns);
 
 $server->wsdl->schemaTargetNamespace=$ns;
 
-$server->register('verificar',array('x'=>'xsd:string'),$ns);
+$server->register('verificar',array('x'=>'xsd:string'),array('z'=>'xsd:string',$ns);
 
 function verificar($x){
 
 	$handle = fopen('../txt/toppasswords.txt', 'r');
-	$valid = false;
+	$valid = "INVALIDA";
 	while (($buffer = fgets($handle)) !== false) {
-    	if (strpos($buffer, $id) !== false) {
-        	$valid = TRUE;
+    	if (strpos($buffer, $x) !== false) {
+        	$valid = "VALIDA";
         	break;
     	}      
 	}
@@ -27,4 +27,5 @@ function verificar($x){
 
 if(!isset($HTTP_RAW_POST_DATA)) $HTTP_RAW_POST_DATA = file_get_contents('php://input');
 $server -> service($HTTP_RAW_POST_DATA);
+
 ?>
