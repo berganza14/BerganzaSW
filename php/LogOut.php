@@ -27,6 +27,7 @@ session_destroy();
     <div>
       <script>
         alert('Vuelve pronto!');
+        window.location.href='DecreaseGlobalCounter.php';
         window.location.href='Layout.php';
       </script>
     </div>

@@ -1,3 +1,9 @@
+<?php include'../php/Seguridad.php'?>
+<?php
+    if($_SESSION['tipoUser']!="usuario"){
+        header('location:Layout.php');
+    }
+?>
 <!DOCTYPE html>
 <html>
 <head>

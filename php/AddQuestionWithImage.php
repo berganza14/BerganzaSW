@@ -1,6 +1,6 @@
 <?php include'../php/Seguridad.php'?>
 <?php
-    if($_SESSION['tipo']=="admin"){
+    if($_SESSION['tipoUser']!="usuario"){
         header('location:Layout.php');
     }
 ?>
@@ -22,7 +22,7 @@
         }
         echo 'Connection OK<br>';
       
-        $email = strip_tags($_REQUEST['correo']);
+        $email = strip_tags($_SESSION['email']);
         $enunciado = strip_tags($_REQUEST['enun']);
         $respuestac = strip_tags($_REQUEST['resc']);
         $respuestai1 = strip_tags($_REQUEST['resi1']);
@@ -69,7 +69,7 @@
               $incorrectResponses->addChild("response", $_POST['resi2']);
               $incorrectResponses->addChild("response", $_POST['resi3']);
             
-              $ficheroPreguntas->asXML('../xml/Questions.xml') or die("Error al guardar el fichero Questions.xml");
+              $xml->asXML('../xml/Questions.xml') or die("Error al guardar el fichero Questions.xml");
               echo "Registro añadido en XML.<br>";
             }else{
                   exit("No se ha podido guardar en XML, no se encuentra el fichero Questions.xml");

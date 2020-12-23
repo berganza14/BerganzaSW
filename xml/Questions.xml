@@ -42,17 +42,17 @@
 			</response>
 		</incorrectResponses>
 	</assessmentItem>
-	<assessmentItem subject="cosas variadas" author="iberganza001@ikasle.ehu.eus">
+	<assessmentItem subject="cosas variadas" author="scortes005@ikasle.ehu.eus">
 		<itemBody>
-			<p>pregunta de prueba</p>
+			<p>Pregunta de prueba</p>
 		</itemBody>
 		<correctResponse>
-			<response>corre</response>
+			<response>Correcta</response>
 		</correctResponse>
 		<incorrectResponses>
-			<response>eerr</response>
-			<response>error2</response>
-			<response>error3</response>
+			<response>Incorrecta 1</response>
+			<response>Incorrecta 2</response>
+			<response>Incorrecta 3</response>
 		</incorrectResponses>
 	</assessmentItem>
 </assessmentItems>
