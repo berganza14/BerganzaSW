@@ -10,7 +10,6 @@
   </style>
 </head>
 <body>
-  <?php include '../php/Menus.php' ?>
   <section class="main" id="s1">
     <div>
       <?php
@@ -18,19 +17,18 @@
         echo '<table>';
         echo "<tr><th>Autor</th><th>Enunciado</th><th>Respuestas correctas</th><th>Respuestas incorrectas</th><th>Tema</th></tr>";
         foreach($assessmentItems as $assessmentItem){
-            echo"<tr>";
-                 echo"<td>".$assessmentItem['author']."</td>";
+                 echo"<tr><td>".$assessmentItem['author']."</td>";
                  echo"<td>".$assessmentItem->itemBody->p."</td>";
                  echo"<td>".$assessmentItem->correctResponse->response."</td>";
-                 $incorrectas = "";
-                 foreach($assessmentItem->incorrectResponses[0] as $response)
-                   {
-                     $incorrectas = $incorrectas . $response . "<br>";
-                   }
-                 echo"<td>".$incorrectas."</td>";
-                 echo"<td>".$assessmentItem['subject']."</td>";
-            echo"</tr>";
-       }
+                    echo"<td><ul>";
+                 foreach($assessmentItem->incorrectResponses->response as $response){
+                        echo "<li>".$response."</li>";
+                    }
+                    echo"</ul></td>";
+                    
+                    echo"<td>".$assessmentItem["subject"]."</td>";
+                    echo"</tr>";
+        }
        echo "</table>";
        echo"<br>";
       ?>

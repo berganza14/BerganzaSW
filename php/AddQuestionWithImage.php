@@ -1,91 +1,79 @@
+<?php include'../php/Seguridad.php'?>
+<?php
+    if($_SESSION['tipo']=="admin"){
+        header('location:Layout.php');
+    }
+?>
 <!DOCTYPE html>
 <html>
 <head>
-  <?php include '../html/Head.html'?>
 </head>
 <body>
-  <?php include '../php/Menus.php' ?>
   <section class="main" id="s1">
     <div>
-      <?php
-      include '../php/DbConfig.php';
+        <?php
+        include '../php/DbConfig.php';
 
-      $link = mysqli_connect ($servername, $username, $password, $database);
+        $link = mysqli_connect ($servername, $username, $password, $database);
 
-      if (!$link){
-        echo "Error Link BD";
-        die ("Fallo al conectar a MySQL: " . mysqli_connect_error());
-      }
-      echo 'Connection OK<br>';
-
-      $required = array('correo','enun','resc','resi1','resi2','resi3','compl','tema');
-      $error = 0;
-
-      foreach($required as $field)
-      {
-        if ($_POST[$field] == "")
-        {
-          echo $_POST[$field];
-          $error = 1;
+        if (!$link){
+          echo "Error Link BD";
+          die ("Fallo al conectar a MySQL: " . mysqli_connect_error());
         }
-      }
+        echo 'Connection OK<br>';
+      
+        $email = strip_tags($_REQUEST['correo']);
+        $enunciado = strip_tags($_REQUEST['enun']);
+        $respuestac = strip_tags($_REQUEST['resc']);
+        $respuestai1 = strip_tags($_REQUEST['resi1']);
+        $respuestai2 = strip_tags($_REQUEST['resi2']);
+        $respuestai3 = strip_tags($_REQUEST['resi3']);
+        $complejidad = strip_tags($_REQUEST['compl']);
+        $tema = ($_REQUEST['tema']);
 
-      $ptrn = '/(^[a-z]+[0-9]{3}@ikasle\.ehu\.(eus)|(es)$)|(^[a-z]+\.?[a-z]+@ehu\.(eus)|(es)$)/';
-      $correo = $_POST["correo"];
-      if(preg_match($ptrn, $correo) == 0)
-      {
-        echo "Correo incorreto";
-        $error = 1;
-      }
-
-      if($error == 0)
-      {
-        $imagen_temporal = $_FILES['imagen']['tmp_name'];
-        $imagen = addslashes(file_get_contents($imagen_temporal));
-
-        $sql="INSERT INTO preguntas(correo,enunciado,correcta,incorrecta1,incorrecta2,incorrecta3,complejidad,tema,imagen) VALUES ('$_POST[correo]', '$_POST[enun]', '$_POST[resc]', '$_POST[resi1]', '$_POST[resi2]', '$_POST[resi3]', '$_POST[compl]', '$_POST[tema]', '$imagen')";
-        if (!mysqli_query($link ,$sql))
-        {
-          echo "Error de insertacion a BD ";
-          die('Error: ' . mysqli_error($link));
+        if($_FILES['imagen']['name'] == ""){
+            $contenido_imagen = base64_encode("");
+        } else {
+            $image = $_FILES['imagen']['tmp_name'];
+            $contenido_imagen = base64_encode(file_get_contents($image));
         }
-        echo "Pregunta añadida con éxito<br>";
-        echo "<p> <a href='ShowQuestionsWithImage.php?username=$correo'> Ver registros </a></p>";
 
-        $xml = simplexml_load_file("../xml/Questions.xml");
-        if(!$xml)
+        $sql = "INSERT INTO preguntas(correo, enunciado, correcta, incorrecta1, incorrecta2, incorrecta3, complejidad, tema, imagen) VALUES('$email', '$enunciado', '$respuestac', '$respuestai1', '$respuestai2', '$respuestai3', $complejidad, '$tema', '$contenido_imagen')";
+
+
+        if(!mysqli_query($link,$sql))
         {
-          echo("<script> alert ('Error')</script>");
+            die("Error: " .mysqli_error($link));
         }
-        else
-        {
-          echo("<script> alert ('Funcionando')</script>");
-          $pregunta = $xml->addChild('assessmentItem');
-          $pregunta->addAttribute('subject', $_POST['tema']);
-          $pregunta->addAttribute('author', $_POST['correo']);
-
-          $itemBody = $pregunta->addChild("itemBody");
-          $itemBody->addChild('p', $_POST['enun']);
-          $correctResponses = $pregunta->addChild("correctResponse");
-          $correctResponses->addChild("response", $_POST['resc']);
-
-          $incorrectResponses = $pregunta->addChild("incorrectResponses");
-          $incorrectResponses->addChild("response", $_POST['resi1']);
-          $incorrectResponses->addChild("response", $_POST['resi2']);
-          $incorrectResponses->addChild("response", $_POST['resi3']);
-
-          $xml->asXML('../xml/Questions.xml');
-        }
-      }
-      else
-      {
-        echo "Error de validacion del formulario<br>";
-        echo "<p> <a href='QuestionFormWithImage.php?username=$correo> Volver a intentar. </a></p>";
-      }
+        echo "Registro añadido en la base de datos.<br>";
+        mysqli_close($link);
 
 
+        //XML
+        if(file_exists('../xml/Questions.xml')){
+              echo("<script> console.log('Añadiendo al XML...')</script>");
+          
+              $xml = simplexml_load_file('../xml/Questions.xml');
 
-      mysqli_close($link);
+              $pregunta = $xml->addChild('assessmentItem');
+              $pregunta->addAttribute('subject', $_POST['tema']);
+              $pregunta->addAttribute('author', $_POST['correo']);
+
+              $itemBody = $pregunta->addChild("itemBody");
+              $itemBody->addChild('p', $_POST['enun']);
+              $correctResponses = $pregunta->addChild("correctResponse");
+              $correctResponses->addChild("response", $_POST['resc']);
+
+              $incorrectResponses = $pregunta->addChild("incorrectResponses");
+              $incorrectResponses->addChild("response", $_POST['resi1']);
+              $incorrectResponses->addChild("response", $_POST['resi2']);
+              $incorrectResponses->addChild("response", $_POST['resi3']);
+            
+              $ficheroPreguntas->asXML('../xml/Questions.xml') or die("Error al guardar el fichero Questions.xml");
+              echo "Registro añadido en XML.<br>";
+            }else{
+                  exit("No se ha podido guardar en XML, no se encuentra el fichero Questions.xml");
+            }
 		?>
     </div>
   </section>

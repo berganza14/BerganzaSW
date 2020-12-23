@@ -1,13 +1,21 @@
+<?php include'../php/Seguridad.php'?>
+<?php
+    if($_SESSION['tipoUser']!="usuario"){
+        header('location:Layout.php');
+        exit();
+    }
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
   <?php include '../html/Head.html'?>
   <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
   <script type="text/javascript" src="../js/ShowImageInForm.js"></script>
   <script type="text/javascript" src="../js/AddQuestionsAjax.js"></script>
   <script type="text/javascript" src="../js/ShowQuestionsAjax.js"></script>
   <script type="text/javascript" src="../js/CountQuestions.js"></script>
+  <script type="text/javascript" src="../js/CountUsers.js"></script>
   <style type="text/css">
     .error
     {
@@ -28,14 +36,16 @@
 <body>
   <?php include '../php/Menus.php' ?>
   <section class="main" id="s1">
-    <div id="counter">
-      <p id="counter2">
-      </p>
+    <div id="info">
+      <h4>Preguntas: </h4>
+      <h4 id="contPreguntas"></h4><br>
+      <h4>Usuarios: </h4>
+      <h4 id="contUsuarios"></h4><br>
     </div>
     <div>
       <form id="fquestionImage" name="fquestionImage" method="POST" enctype="multipart/form-data">
       	<br>
-        Correo*: <input type='text' name='correo' id='correo' value="<?php echo htmlspecialchars($_GET["username"])?>"> <br>
+        Correo*: <input type='text' name='correo' id='correo' value="<?php echo $_SESSION['email'];?>" readonly="readonly"> <br>
       	Enunciado*: <input type="text" name="enun" id="enun"> <br>
       	Respuesta correcta* : <input type="text" name="resc" id="resc"> <br>
       	Respuesta incorrecta 1*: <input type="text" name="resi1" id="resi1"> <br>
@@ -48,15 +58,13 @@
       	Tema pregunta*: <input type="text" name="tema" id="tema"> <br>
         <input type="file" name="imagen" id="imagen" accept="image"><br><br>
         <div class="newImagen"></div> <br><br>
-        <input type="button" name="enviar" id="enviar" value="Enviar Pregunta"><br><br>
-        <input type="button" name="ver" id="ver" value="Ver Preguntas" onclick="pedirPreguntas()"><br><br>
+        <input type="button" name="enviar" id="enviar" value="Enviar Pregunta" onclick="enviarForm()"><br><br>
+        <input type="button" name="ver" id="ver" value="Ver Preguntas" onclick="verPreguntas()"><br><br>
       </form>
     </div>
     <div id="insercionDIV">
     </div>
-    <div id="preguntasDIV">
-      <table id="preguntas" >
-      </table>
+    <div id="tabla">
     </div>
   </section>
   <?php include '../html/Footer.html' ?>

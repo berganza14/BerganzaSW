@@ -2,30 +2,48 @@
 require_once('../lib/nusoap.php');
 require_once('../lib/class.wsdlcache.php');
 
-$ns="http://localhost/nusoap-0.9.5/samples";
+$ns="http://".$_SERVER['HTTP_HOST']."/ProyectoSW2020-Alumnos/php";
 $server = new soap_server;
 $server -> configureWSDL('verificar',$ns);
 
-$server->wsdl->schemaTargetNamespace=$ns;
+$server->wsdl->schemaTargetNamespace=$ns;	
 
-$server->register('verificar',array('x'=>'xsd:string'),array('z'=>'xsd:string',$ns);
+    
+$server->register('verificar',
+		array('x'=>'xsd:string', 'ticket'=>'xsd:string'),
+		array('y'=>'xsd:string'),$ns);
 
-function verificar($x){
-
-	$handle = fopen('../txt/toppasswords.txt', 'r');
-	$valid = "INVALIDA";
-	while (($buffer = fgets($handle)) !== false) {
-    	if (strpos($buffer, $x) !== false) {
-        	$valid = "VALIDA";
-        	break;
-    	}      
+function verificar($x,$ticket)
+{
+	if($ticket === "1010")
+	{
+		$handle = fopen('../txt/toppasswords.txt', 'r');
+		$invalid = false;
+		while (!feof($handle)) {
+			$linea = fgets($handle);
+			$linea = trim($linea);
+			if ($linea === $x){
+				$invalid = true;
+			}
+		}
+		fclose($handle);
+		if($invalid === false)
+		{
+			return "VALIDA";
+		}
+		else
+		{
+			return "INVALIDA";
+		}
 	}
-	fclose($handle);
-	return $valid; 
-
+	else
+	{
+		return "INVALIDA TICKET";
+	}
 }
 
 if(!isset($HTTP_RAW_POST_DATA)) $HTTP_RAW_POST_DATA = file_get_contents('php://input');
 $server -> service($HTTP_RAW_POST_DATA);
 
-?>
+
+

@@ -1,10 +1,13 @@
+<?php
+session_start ();
+?>
 <!DOCTYPE html>
 <html>
 <head>
   <?php include '../html/Head.html'?>
   <style>
          #s1 {
-          background-image: url("../images/quiz.png");
+          background-image: url("../images/quiz.jpg");
           background-position: center; /* Center the image */
           background-repeat: no-repeat; /* Do not repeat the image */
           background-size: auto; /* Resize the background image to cover the entire container */
@@ -12,6 +15,7 @@
          }
          h2 {
           color: darkblue;
+          -webkit-text-stroke: 1px white;
          }
       </style>
 </head>

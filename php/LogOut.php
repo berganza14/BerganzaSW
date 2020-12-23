@@ -1,3 +1,7 @@
+<?php
+session_start();
+session_destroy();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,25 +25,10 @@
   <?php include '../php/Menus.php' ?>
   <section class="main" id="s1">
     <div>
-      <form method="POST" id="signup" name="signup">
-      	<br>
-      	Username*: <input type="text" name="user" id="user" class="valido" > <br>
-        Password*: <input type="text" name="pass" id="pass" class="valido" > <br>
-        <input type="submit" name="boton" id="boton" value="Log In">
-      </form>
-      <?php
-      echo ("<script> alert ('Vuelve pronto! ')</script>");
-
-      if (headers_sent())
-      {
-        echo ("Ha habido un fallo de redireccionamiento, use este link");
-        echo "<a href=Layout.php></a>";
-      }
-      else
-      {
-          header('location: Layout.php');
-      }
-      ?>
+      <script>
+        alert('Vuelve pronto!');
+        window.location.href='Layout.php';
+      </script>
     </div>
   </section>
   <?php include '../html/Footer.html'?>

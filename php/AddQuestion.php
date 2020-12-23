@@ -1,3 +1,4 @@
+<?php include'../php/SeguridadIdentificado.php'?>
 <!DOCTYPE html>
 <html>
 <head>

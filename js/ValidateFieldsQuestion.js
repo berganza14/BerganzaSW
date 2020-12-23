@@ -1,5 +1,5 @@
  $(document).ready(function(){
-     $('#enviar').onclick(function(e) {
+     $('#enviar').click(function(e) {
     		var correo = $("#correo").val();
     		var enun = $("#enun").val();
     		var resc = $("#resc").val();
@@ -60,7 +60,7 @@
   //Tuve que hacer 2 funciones para validar los formularios ya que
   //en el primero no hay el campo imagen, pero en el segundo si. Entonces
   //no podia poner la validaciond de la imagen en la primera validacion.
-  $('#enviar').onclick(function(e) {
+  $('#enviar').click(function(e) {
      var correo = $("#correo").val();
      var enun = $("#enun").val();
      var resc = $("#resc").val();

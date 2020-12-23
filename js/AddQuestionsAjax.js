@@ -1,23 +1,25 @@
-$(document).ready(function() {
-  $("#enviar").click(function(){
-    var myform = document.getElementById("fquestionImage");
-    var fd = new FormData(myform);
+function enviarForm(){
+
+    var myform = $('#fquestionImage')[0];
+    var data = new FormData(myform);
+
     $.ajax({
        url : '../php/AddQuestionWithImage.php',
+       enctype: 'multipart/form-data',
        type : 'POST',
-       data: fd,
+       data: data,
        cache: false,
        processData: false,
        contentType: false,
-       success : function (response)
+       success : function (data)
        {
           document.getElementById("insercionDIV").innerHTML = "Pregunta añadida!";
-          pedirPreguntas();
+          $("#tabla").html(data);
        },
        error : function ()
        {
          document.getElementById("insercionDIV").innerHTML = "Error al añadir la pregunta :(";
        }
      });
-  });
-});
+
+} 

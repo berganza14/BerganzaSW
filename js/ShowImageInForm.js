@@ -15,7 +15,7 @@ function verImagen(input)
         reader.onload = function (e) 
         {
             console.log("Añadiendo imagen");
-            var picture = '<img src="' + e.target.result + '" style="width:200px;height:200px;" >'
+            var picture = '<img src="' + e.target.result + '" style="width:100px;height:100px;" >'
             $(".newImagen").empty().append(picture);
         }
         reader.readAsDataURL(input.files[0]);

@@ -1,3 +1,6 @@
+<?php
+session_start ();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,8 +31,7 @@
       </form>
       <?php
       include '../php/DbConfig.php';
-      if (isset($_POST['user']))
-      {
+      if (isset($_POST['user'])) {
         $mysql = mysqli_connect($servername, $username, $password, $database);
         if (!$mysql){
           echo 'fallo al conectar<br>';
@@ -40,37 +42,43 @@
         $username = $_POST['user'];
         $pass = $_POST['pass'];
 
-        $cont = 0;
-        $usuarios = mysqli_query($mysql, "select * from usuarios where email = '$username' and contraseña = '$pass'");
-        $row = mysqli_fetch_array($usuarios);
-        $cont = mysqli_num_rows($usuarios);
-        mysqli_free_result($usuarios);
-        mysqli_close($mysql);
-        $foto = $row['foto'];
-        if($cont == 1)
-        {
-          echo("<script> alert ('BIENVENIDO AL SISTEMA:". $username . "')</script>");
+        $sql = "SELECT * FROM usuarios WHERE email='$username';";
 
-          $cont = 0;
-          if (headers_sent())
-          {
-              echo ("Login correcto");
-              echo ("Ha habido un fallo de redireccionamiento, use este link");
-              echo("<p><a href='Layout.php?username=$username&foto=$foto'>Insertar preguntas</a>");
-          }
-          else
-          {
-              header('location: Layout.php?username='.$username.'&foto='.$foto);
-          }
+        $res = mysqli_query($mysql,$sql,MYSQLI_USE_RESULT);
+
+        if(!$res){
+          die("Error: ".mysqli_error($mysql));
         }
-        else
-        {
-          echo ("Parametros de login incorrectos");
+
+        $row = mysqli_fetch_array($res);
+
+        if(($row['email']==$username)and(hash_equals($row['contraseña'],crypt($pass,$row['contraseña'])))){
+          if($row['estado']=="activo"){
+            $_SESSION['identificado']="SI";
+            $_SESSION['email']=$row['email'];
+            if($row['email'] == "admin@ehu.es"){
+              
+              $_SESSION['tipoUser'] = "admin";
+            } else {
+              $_SESSION['tipoUser'] = "usuario";
+            }
+
+            echo "<script>
+            alert('Bienvenido al sistema!');
+            window.location.href='IncreaseGlobalCounter.php';
+            </script>"; 
+          } else {
+            echo "Acceso denegado. Usuario bloqueado. <br>";
+            echo "<a href=\"javascript:history.back()\">Volver</a>";
+          }
+          mysqli_close($mysql);
         }
       }
+  
       ?>
+
     </div>
   </section>
-  <?php include '../html/Footer.html'?>
+  <?php include '../html/Footer.html' ?>
 </body>
 </html>

@@ -1,23 +1,31 @@
 $(document).ready(function()
 {
   refresh();
-  setInterval(refresh, 10000);
+  setInterval(refresh, 5000);
 });
 
 function refresh()
 {
-  console.log("Time:");
-  $.ajax({
-      type: "GET",
-      url: "../xml/Questions.xml",
-      cache: false,
-      dataType: "xml",
-      success: function(xml)
-      {
-            var correo = $('#correo').val();
-            var userCont = $(xml).find("assessmentItem[author='"+correo+"']").length;
-            var cont = $(xml).find("assessmentItem").length;
-            $('#counter2').text("Mis preguntas/Todas las preguntas: " + userCont + "/" + cont);
-      }
+    var cont = 0;
+    var contEmail = 0;
+    var email = $('#correo').val();
+    $.ajax({
+        type: "GET",
+        url:"../xml/Questions.xml",
+        dataType: "xml",
+        async: false,
+        cache: false,
+        success: function(xml){
+            $(xml).find("assessmentItem").each(function(){
+            emailXml = $(this).attr('author');
+            if(email.valueOf()==emailXml.valueOf()){
+                contEmail += 1;
+            }
+                cont += 1;
+        });
+            $('#contPreguntas').empty();
+            $('#contPreguntas').append("<a>"+contEmail+"</a> / <a>"+cont+"</a>");
+    }
+
   });
 }
